@@ -1,4 +1,3 @@
-
 /* --------------------------------*
  * STORE/MODULES/MOVIES.JS
  *
@@ -8,6 +7,7 @@
  * functionality only relative
  * to the movies entity
  *--------------------------------*/
+
 const moviesModule = {
   namespaced: true,
   state: { },
