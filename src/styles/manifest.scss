@@ -1,0 +1,17 @@
+/* --------------------------------*
+ * STYLES/MANIFEST.SCSS
+ *
+ * This is our base import file
+ * where we import all our SCSS
+ * modules for a clean applicatiomn
+ * structure
+ *--------------------------------*/
+
+// SETTINGS
+@import '../styles/_settings.scss';
+
+// BASE
+@import '../styles/_base.scss';
+
+// TYPOGRAPHY
+@import '../styles/_typography.scss';

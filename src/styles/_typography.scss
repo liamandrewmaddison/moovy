@@ -1,0 +1,14 @@
+/* --------------------------------*
+ * STYLES/_TYPOGRAPHY.SCSS
+ *
+ * All our typography global styles
+ * such as h1, h2 and p tags
+ *--------------------------------*/
+
+h1,
+h2 {
+  font-family: 'Pacifico', cursive;
+}
+h1 {
+  font-size: $font-size-heading;
+}
