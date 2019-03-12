@@ -57,8 +57,8 @@ export default {
       cursor: pointer;
       .card__genres__item {
         transition: background-color ease .25s, color ease .25s;
-        background-color: $color-green;
-        color: $color-green-dark;
+        background-color: $color-blue-dark;
+        color: #fff;
       }
     }
     &__image {
