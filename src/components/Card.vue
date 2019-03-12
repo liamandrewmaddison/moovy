@@ -50,6 +50,7 @@ export default {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 1px 2px 7px -1px $color-grey;
+    position: relative;
     &__image {
       display: block;
       width: 100%;
@@ -74,5 +75,14 @@ export default {
         box-shadow: -2px 2px 6px -2px #000;
       }
     }
+  }
+
+  // animations
+  .fade-enter-active, .fade-leave-active {
+    transition: all .75s;
+  }
+  .fade-enter, .fade-leave-to {
+    transition: all .75s;
+    opacity: 0;
   }
 </style>
