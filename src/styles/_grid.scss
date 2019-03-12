@@ -1,0 +1,17 @@
+/* --------------------------------*
+ * STYLES/_GRID.SCSS
+ *
+ * Our basic grid system
+ *--------------------------------*/
+
+.grid {
+  grid-column-gap: $spacing-base;
+  grid-row-gap: $spacing-base;
+  display: grid;
+  grid-template-columns: 'column column column column';
+  grid-template-columns: repeat(4, 1fr);
+  &__item {
+    width: 100%;
+    grid-area: 'column';
+  }
+}
