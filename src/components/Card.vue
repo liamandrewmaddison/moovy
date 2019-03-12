@@ -50,6 +50,7 @@ export default {
     overflow: hidden;
     box-shadow: 1px 2px 7px -1px $color-grey;
     position: relative;
+    background: #fff;
     &__image {
       display: block;
       width: 100%;
