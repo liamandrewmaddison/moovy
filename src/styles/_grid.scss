@@ -12,6 +12,27 @@
   grid-template-columns: repeat(4, 1fr);
   &__item {
     width: 100%;
-    grid-area: 'column';
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  .grid {
+    grid-template-columns: 'column column column';
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .grid {
+    grid-template-columns: 'column column';
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media screen and (max-width: 520px) {
+  .grid {
+    grid-template-columns: 'column';
+    grid-template-columns: repeat(1, 1fr);
   }
 }

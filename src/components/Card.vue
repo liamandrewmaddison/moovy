@@ -46,7 +46,6 @@ export default {
   @import '../styles/_settings.scss';
 
   .card {
-    max-width: 280px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 1px 2px 7px -1px $color-grey;
