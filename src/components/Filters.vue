@@ -3,13 +3,23 @@
     <div class="filter__genre">
       <b>Pick your genres:</b>
       <multiselect
-        v-model="value"
-        tag-placeholder="Add this as new tag"
-        placeholder="Search or add a tag"
+        v-model="selectedGenres"
+        placeholder="Filter by genre"
         label="name"
         track-by="id"
         :options="genres"
         :multiple="true"
+        :taggable="true">
+      </multiselect>
+    </div>
+    <div class="filter__star-rating">
+      <b>Sort by star rating:</b>
+      <multiselect
+        v-model="selectedRating"
+        placeholder="Filter by star rating"
+        label="rating"
+        track-by="rating"
+        :options="starRatings"
         :taggable="true">
       </multiselect>
     </div>
@@ -27,7 +37,31 @@ export default {
   },
   data() {
     return {
-      value: null,
+      selectedGenres: null,
+      selectedRating: null,
+      starRatings: [
+        { rating: 0 },
+        { rating: 0.5 },
+        { rating: 1 },
+        { rating: 1.5 },
+        { rating: 2 },
+        { rating: 2.5 },
+        { rating: 3 },
+        { rating: 3.5 },
+        { rating: 4 },
+        { rating: 4.5 },
+        { rating: 5 },
+        { rating: 5.5 },
+        { rating: 6 },
+        { rating: 6.5 },
+        { rating: 7 },
+        { rating: 7.5 },
+        { rating: 8 },
+        { rating: 8.5 },
+        { rating: 9 },
+        { rating: 9.5 },
+        { rating: 10 },
+      ],
     };
   },
   computed: {
@@ -37,10 +71,24 @@ export default {
     }),
   },
   watch: {
-    value: {
+    selectedGenres: {
       handler() {
-        const genres = this.value;
-        this.$store.dispatch('movies/FILTER_RESULTS', { genres });
+        const genres = this.selectedGenres;
+        if (!genres) {
+          return;
+        }
+        this.$store.dispatch('movies/FILTER_BY_GENRES', { genres });
+        this.starRating = null;
+      },
+    },
+    selectedRating: {
+      handler() {
+        const rating = this.selectedRating;
+        if (!rating) {
+          return;
+        }
+        this.$store.dispatch('movies/FILTER_BY_STAR_RATING', rating);
+        this.selectedGenres = null;
       },
     },
   },
@@ -71,13 +119,14 @@ export default {
     padding: $spacing-base;
     background: #fff;
     border-bottom: 1px solid $color-grey-light;
+    display: grid;
+    grid-template-columns: 'item item';
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: $spacing-base;
     b {
       text-align: left;
       display: block;
       margin-bottom: $spacing-xs;
-    }
-    &__genre {
-      width: 50%;
     }
   }
 </style>

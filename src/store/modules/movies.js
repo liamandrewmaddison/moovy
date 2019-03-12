@@ -60,7 +60,7 @@ const moviesModule = {
       });
     },
     // filters results by genre
-    FILTER_RESULTS({ state, commit }, { genres }) {
+    FILTER_BY_GENRES({ state, commit }, { genres }) {
       const list = state.results.filter((result) => {
         const genreIds = result.genre_ids;
         let found = false;
@@ -73,6 +73,12 @@ const moviesModule = {
         });
         return found;
       });
+
+      commit('SET_FILTER_LIST', { list });
+    },
+    // filters results by rating
+    FILTER_BY_STAR_RATING({ state, commit }, { rating }) {
+      const list = state.results.filter(result => result.vote_average >= rating);
 
       commit('SET_FILTER_LIST', { list });
     },
