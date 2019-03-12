@@ -15,7 +15,7 @@ export default {
   @import '../styles/_settings.scss';
 
   .header {
-    padding: $spacing-base;
+    padding: $spacing-large;
     background-color: $primary-color;
     color: #fff;
     h1 {
