@@ -22,6 +22,7 @@ const moviesModule = {
   state: {
     results: [],
     genres: [],
+    filterList: [],
   },
   mutations: {
     SET_RESULTS(state, { results }) {
@@ -30,8 +31,12 @@ const moviesModule = {
     SET_GENRES(state, { genres }) {
       state.genres = genres;
     },
+    SET_FILTER_LIST(state, { list }) {
+      state.filterList = list;
+    },
   },
   actions: {
+    // gets all movies on page 1
     async GET_MOVIES({ commit }) {
       return http({
         url: 'discover/movie?page=1',
@@ -45,6 +50,7 @@ const moviesModule = {
         commit('SET_RESULTS', { results });
       });
     },
+    // gets all availabe genres
     async GET_GENRES({ commit }) {
       return http({
         url: 'genre/movie/list',
@@ -53,9 +59,28 @@ const moviesModule = {
         commit('SET_GENRES', { genres });
       });
     },
+    // filters results by genre
+    FILTER_RESULTS({ state, commit }, { genres }) {
+      const list = state.results.filter((result) => {
+        const genreIds = result.genre_ids;
+        let found = false;
+        genreIds.forEach((genreId) => {
+          genres.forEach((genre) => {
+            if (genre.id === genreId) {
+              found = result;
+            }
+          });
+        });
+        return found;
+      });
+
+      commit('SET_FILTER_LIST', { list });
+    },
   },
   getters: {
-    availableGenreList(state, getters) {
+    // gets all availabe genres that are
+    // available with the movie list given
+    availableGenres(state, getters) {
       const allGenres = new Set();
       state.results.forEach((result) => {
         allGenres.add(...result.genre_ids);
@@ -63,7 +88,9 @@ const moviesModule = {
 
       return [...allGenres].map(genreId => getters.getGenreById(genreId));
     },
+    // gets a genre by its ID
     getGenreById: state => id => state.genres.filter(genre => genre.id === id)[0],
+    // gets a list of genres when passed a list of ids
     getGenresByIds: (state, getters) => (ids) => {
       const genres = new Set();
 
