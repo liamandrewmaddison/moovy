@@ -38,7 +38,9 @@ export default {
   data() {
     return {
       selectedGenres: null,
-      selectedRating: null,
+      selectedRating: {
+        rating: 3,
+      },
       starRatings: [
         { rating: 0 },
         { rating: 0.5 },
@@ -78,7 +80,7 @@ export default {
           return;
         }
         this.$store.dispatch('movies/FILTER_BY_GENRES', { genres });
-        this.starRating = null;
+        this.selectedRating = null;
       },
     },
     selectedRating: {
