@@ -51,6 +51,16 @@ export default {
     box-shadow: 1px 2px 7px -1px $color-grey;
     position: relative;
     background: #fff;
+    transition: all ease .25s;
+    &:hover {
+      transform: scale(1.02);
+      cursor: pointer;
+      .card__genres__item {
+        transition: background-color ease .25s, color ease .25s;
+        background-color: $color-green;
+        color: $color-green-dark;
+      }
+    }
     &__image {
       display: block;
       width: 100%;
